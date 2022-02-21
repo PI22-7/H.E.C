@@ -1,6 +1,7 @@
 from http import server
 import os
 import subprocess
+import time
 import discord
 from discord.ext import commands
 
@@ -33,9 +34,14 @@ async def man(ctx):
     await ctx.send('more game support coming soon')
 
 # kill command
+@bot.command()
+async def hardkill(ctx):
+    os.system('killall screen')
+
+# stop command
 # uses a bash command to kill a process, prob a better way todo it tbh
 @bot.command() #screen back into it?
-async def kill(ctx):
+async def stop(ctx):
     global serverstatus
     if serverstatus == 'running starbound':
         os.system('sudo screen -r sbscreen -X quit')
@@ -46,7 +52,7 @@ async def kill(ctx):
         await ctx.send('starbound server shut down')
 
     elif serverstatus == 'running minecraft':
-        os.system('cd /opt/scripts/ && sudo ./mcstop.sh')
+        os.system('cd /opt/scripts/ && sudo ./mcstop.sh')   
         await ctx.send('starbound server shut down')
 
     elif serverstatus == 'running project zomboid':
