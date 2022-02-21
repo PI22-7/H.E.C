@@ -38,19 +38,19 @@ async def man(ctx):
 async def kill(ctx):
     global serverstatus
     if serverstatus == 'running starbound':
-        os.system('screen -r sbscreen -X quit')
+        os.system('sudo screen -r sbscreen -X quit')
         await ctx.send('starbound server shut down')
 
     elif serverstatus == 'running terraria':
-        os.system('screen -r trscreen -X quit')
+        os.system('sudo screen -r trscreen -X quit')
         await ctx.send('starbound server shut down')
 
     elif serverstatus == 'running minecraft':
-        os.system('screen -r mcscreen -X quit')
+        os.system('cd /opt/scripts/ && sudo ./mcstop.sh')
         await ctx.send('starbound server shut down')
 
     elif serverstatus == 'running project zomboid':
-        os.system('screen -r pzscreen -X quit')
+        os.system('sudo screen -r pzscreen -X quit')
         await ctx.send('starbound server shut down')
 
     else:
@@ -88,6 +88,7 @@ async def minecraft(ctx):
     if serverstatus == 'free':
         await ctx.send('commencing vanilla minecraft server launch')
         print('vanilla minecraft server spooling up')
+        os.system('cd /opt/scripts/ && sudo ./mcstart.sh ')
         await bot.change_presence(activity=discord.Game(name='vanilla minecraft'))
         serverstatus = 'running minecraft'
     else:
@@ -100,8 +101,8 @@ async def projectzomboid(ctx):
         print('zomboide server spooling up')
         await ctx.send('commencing project zomboid launch')
         await bot.change_presence(activity=discord.Game(name='project zomboid'))
-        os.system('screen -X quit') # cleans all other sessions before starting
-        os.system('screen -AmdS pzscreen bash ./pz.sh')
+        os.system('sudo screen -X quit') # cleans all other sessions before starting
+        os.system('sudo screen -AmdS pzscreen bash ./pz.sh')
         serverstatus = 'running projectzomboid'
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
