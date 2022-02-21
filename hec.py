@@ -39,19 +39,19 @@ async def kill(ctx):
     global serverstatus
     if serverstatus == 'running starbound':
         os.system('screen -r sbscreen -X quit')
-        ctx.send('starbound server shut down')
+        await ctx.send('starbound server shut down')
 
     elif serverstatus == 'running terraria':
-        os.system('screen -r tascreen -X quit')
-        ctx.send('starbound server shut down')
+        os.system('screen -r trscreen -X quit')
+        await ctx.send('starbound server shut down')
 
     elif serverstatus == 'running minecraft':
         os.system('screen -r mcscreen -X quit')
-        ctx.send('starbound server shut down')
+        await ctx.send('starbound server shut down')
 
     elif serverstatus == 'running project zomboid':
         os.system('screen -r pzscreen -X quit')
-        ctx.send('starbound server shut down')
+        await ctx.send('starbound server shut down')
 
     else:
         ctx.send('no server running')
