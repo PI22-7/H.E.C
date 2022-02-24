@@ -17,7 +17,16 @@ a discord api key with a registered bot account
 
 ## add a steam user ##
 this is important as the program will look within the steam users files for required programs
-it is also important to give the steam user sudo priviliges 
+it is also important to give the steam user sudo priviliges
+
+
+## give sudo priviliges
+give sudo privilges by adding the steam user to the wheel group
+* sudo usermod -a -G wheel 'youruserhere'
+this must be done with root or a user already equiped with sudo access
+if you are having trouble with this step verify you have your sudoers file setup correctly
+* visudo
+uncommment:
 
 ## adding steamcmd ##
 (for debian):
