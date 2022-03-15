@@ -1,8 +1,8 @@
 # H.E.C (Hardware External Controller)
-    A discord bot written in python intended to run on a linux server, allowing discord server memebers to spool up servers remotley
+A discord bot written in python intended to run on a linux server, allowing discord server memebers to spool up servers remotley
 
-    **warning** this script gives a sizeable quantity of control to any discord user on your server with access to the bot
-    the script should prevent users from starting more then one server at a time, but only allow people you trust these stupid powers
+**warning** this script gives a sizeable quantity of control to any discord user on your server with access to the bot
+the script should prevent users from starting more then one server at a time, but only allow people you trust these stupid powers
 
 ## Please follow the following steps for a full installation:
 
@@ -22,10 +22,15 @@
 
 ### Steam User
  This part is simple: simply go into you terminal and add a user with
+ 
  `sudo adduser steam`
+
  Then give sudo permissions
+ 
  `sudo usermod -a -G sudo steam`
+ 
  Lastly swap to them
+ 
  `su - steam`
 
 ### 
