@@ -53,11 +53,11 @@ async def hardkill(ctx):
 async def stop(ctx):
     global serverstatus
     if serverstatus == 'running starbound':
-        os.system('')
+        os.system('./starboundserver stop')
         await ctx.send('starbound server shut down')
 
     elif serverstatus == 'running terraria':
-        os.system('')
+        os.system('./terraria stop')
         await ctx.send('terraria server shutting down')
 
     elif serverstatus == 'running minecraft':
@@ -112,9 +112,10 @@ async def minecraft(ctx):
 async def projectzomboid(ctx):
     global serverstatus
     if serverstatus == 'free':
-
         os.system('./pzserver start')
-
+        await ctx.send('starting projectzomboid server')
+        await bot.change_presence(activity=discord.Game(name='project zomboid'))
+        serverstatus = 'running project zomboid'
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
 
