@@ -19,8 +19,8 @@ serverstatus = 'free'
 with open(apiKey) as f:
     key = f.read()
     
-def get_pid(name):
-    return check_output(["pidof,name"])
+#def get_pid(name):
+#    return check_output(["pidof,name"])
 
 
 # basic ping command
