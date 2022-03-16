@@ -1,77 +1,86 @@
+# H.E.C (Hardware External Controller)
 A discord bot written in python intended to run on a linux server, allowing discord server memebers to spool up servers remotley
 
 **warning** this script gives a sizeable quantity of control to any discord user on your server with access to the bot
 the script should prevent users from starting more then one server at a time, but only allow people you trust these stupid powers
 
-written by yann rampitsch
+this guide will assume that you have a very basic understanding of linux and good troubleshooting abilities
 
-## The following steps must be taken for a full installation:
+I only really plan on implementing games that I play, but i can be swaded with a feature request to add more games.
 
-## required programs ##
-python 3
-python-pip
-discord.py
-screen
+## Supported Games:
+* Terraria (requires a steam account that owns it)
+* Minecraft Java
+* Project Zomboid
+* Valheim
+* Starbound
 
-a discord api key with a registered bot account
+### Planned
+* Dont Starve Together
+* Factorio
+* Satisfactory
+* Vintage Story
+* Stationeers
 
-## add a steam user ##
-this is important as the program will look within the steam users files for required programs
-it is also important to give the steam user sudo priviliges
+### On my radar
+* Rust
+* Dayz
+* Papermc
 
+# Installation Guide
 
-## give sudo priviliges
-give sudo privilges by adding the steam user to the wheel group
-* sudo usermod -a -G wheel 'youruserhere'
-this must be done with root or a user already equiped with sudo access
-if you are having trouble with this step verify you have your sudoers file setup correctly
-* visudo
-uncommment:
+## Dependencies
+* Linux (ubuntu >18, debian >10, or centos 8 is preferable, in that order) (please see LinuxGSM's site for its recomendations)
+* python 3
+* python-pip
+* discord.py
+* git (it helps but you cooould do it without)
 
-## adding steamcmd ##
-(for debian):
+## Discord
+ For this to work you'll need a discord bot with an api key,
+ an actual guide on how to do this is here -> https://discordpy.readthedocs.io/en/stable/discord.html
+ but i'll just assume you know how to do that (because i'm a terrible teacher :P )
+ now that you have that sweet api key make a file called *checks notes* 'DiscordApiKey.txt' (case sensitive), and then paste the key in there and save it (hold onto this for later)
 
-    to add steamcmd add this string to 
-    $ nano /etc/apt/sources.list 
-        'deb http://ftp.de.debian.org debian buster main non-free'
+## Steam User
+ This part is simple: simply go into you terminal and add a user with
+ 
+    `sudo adduser steam`
 
-    $ dpkg --add-architecture i386
-    maybe use -> "apt-get install libc6:i386" as well
-    $ apt-get update
-    $ apt-get upgrade
-    $ apt-get dist-upgrade
+ Then give sudo permissions
+ 
+     `sudo usermod -a -G sudo steam`
+ 
+ Lastly swap to them
+ 
+     `su - steam`
 
-Next install steamcmd with apt
-$ apt install steamcmd
+## Downloading The Script
+ Move to your home directory then clone the repos
 
-(for arch):
+    `cd ~`
+    `git clone https://github.com/PI22-7/H.E.C.git `
+    
+ Cd into the cloned directory then copy the files and place them inside a new folder called 'hec' !(temporary will devise a better method of this later)!
 
-    $ yay -S steamcmd
+    `cd ~ && touch hec`    
 
-## folder structure ##
-the program will look for games in
-    /home/steam/.steam/steamapps/common/
-the python script should be placed in
-    /home/steam/hec/
+ Then place the API key within the new 'hec' folder
 
-you will also need to place you bot token in the /hec/ directory 
-name the txt that key is placed in 'discordApiKey.txt'
+## Run The Script
+ To run the script, start by making sure your in the correct directory (~/python/HEC)
 
-## project zomboid ## 
-$ steamcmd
-> login anonymous
-> app_update 380870 validate
-> quit
+ Next, run the following
 
-port forward the following ports:
-* 8766 UDP
-* 16261 UDP
+    `python3 hec.py`
 
-## terraria ##
-coming soon
+ You can also make this script start on launch for simplicity (the methods for this vary wildly but using systemd might be the best idea)
+ this guide here should give a good starting point (https://www.howtogeek.com/687970/how-to-run-a-linux-program-at-startup-with-systemd/)
 
-## minecraft ##
-coming soon
+## LinuxGSM
+ Now that the script indeed starts and your bot comes online, now is a good time to shut it down and begin the linux game server manager installation, I left this out of the depedencies as it needs to be installed in a specific way for the script to work
 
-## starbound ##
-coming soon
+ Start by going to the website (https://linuxgsm.com/servers/) and look for a game server that you want to install (make sure my script supports it see above), now follow the given installation process, however **make sure to do the following** do not create a user for the server and let the script install to the default location (make sure you are in the steam users home directory 'cd ~' to get there), now that you know that continue by following the rest of the tutorial as normal  (https://linuxgsm.com/servers/) 
+
+ now that that you have a game installed feel free to start the python script again
+ congradulations! Your discord bot should work as expected

@@ -1,9 +1,14 @@
 from http import server
 import os
 import subprocess
+from subprocess import check_output
 import time
 import discord
 from discord.ext import commands
+
+# TODO
+# This is an excessive amount of "if" statements, prob could use a better implementation
+# This is to be regarded as a human limitation -> i'll keep learning and see what i can do to improve my shitty code :P
 
 # bot prefix + apikey read output
 bot = commands.Bot(command_prefix='$')
@@ -14,6 +19,10 @@ serverstatus = 'free'
 with open(apiKey) as f:
     key = f.read()
     
+def get_pid(name):
+    return check_output(["pidof,name"])
+
+
 # basic ping command
 @bot.command()
 async def ping(ctx):
@@ -38,34 +47,33 @@ async def man(ctx):
 async def hardkill(ctx):
     os.system('killall screen')
 
-# stop command
-# uses a bash command to kill a process, prob a better way todo it tbh
-@bot.command() #screen back into it?
+
+# piggybacks off linuxgsm for start/stop functionalities 
+@bot.command() 
 async def stop(ctx):
     global serverstatus
     if serverstatus == 'running starbound':
-        os.system('sudo screen -r sbscreen -X quit')
+        os.system('./starboundserver stop')
         await ctx.send('starbound server shut down')
 
     elif serverstatus == 'running terraria':
-        os.system('sudo screen -r trscreen -X quit')
-        await ctx.send('starbound server shut down')
+        os.system('./terraria stop')
+        await ctx.send('terraria server shutting down')
 
     elif serverstatus == 'running minecraft':
-        os.system('cd /opt/scripts/ && sudo ./mcstop.sh')   
-        await ctx.send('starbound server shut down')
-
+        os.system('./minecraftserver stop')   
+        await ctx.send('minecraft server shutting down')
+  
     elif serverstatus == 'running project zomboid':
-        os.system('sudo screen -r pzscreen -X quit')
-        await ctx.send('starbound server shut down')
-
+        os.system('cd ~ && ./pzserver stop')
+        await ctx.send('project zomboid server shutting down')
     else:
         ctx.send('no server running')
     
     serverstatus = 'free'
     await ctx.send('done')
 
-# spool up commands for various game servers -> adds current server the bots status
+# again uses linuxgsm's start command as well as preventing other server launches (max 1 at once)
 @bot.command()
 async def starbound(ctx):
     global serverstatus
@@ -94,24 +102,25 @@ async def minecraft(ctx):
     if serverstatus == 'free':
         await ctx.send('commencing vanilla minecraft server launch')
         print('vanilla minecraft server spooling up')
-        os.system('cd /opt/scripts/ && sudo ./mcstart.sh ')
+ #       os.system('cd /opt/scripts/ && sudo ./mcstart.sh ')
         await bot.change_presence(activity=discord.Game(name='vanilla minecraft'))
         serverstatus = 'running minecraft'
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
 
+#first implementation of linuxGSM, simplifies shit A lot!!!
 @bot.command()
 async def projectzomboid(ctx):
     global serverstatus
     if serverstatus == 'free':
-        print('zomboide server spooling up')
-        await ctx.send('commencing project zomboid launch')
+        os.system('cd ~ && ./pzserver start')
+        await ctx.send('starting projectzomboid server')
         await bot.change_presence(activity=discord.Game(name='project zomboid'))
-        os.system('sudo screen -X quit') # cleans all other sessions before starting
-        os.system('sudo screen -AmdS pzscreen bash ./pz.sh')
-        serverstatus = 'running projectzomboid'
+        serverstatus = 'running project zomboid'
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
+
+
 
 
 # runs from api key file output, closes api key file
