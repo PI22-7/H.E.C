@@ -15,34 +15,34 @@ I only really plan on implementing games that I play, but i can be swaded with a
 * Valheim
 * Starbound
 
-## Planned
+### Planned
 * Dont Starve Together
 * Factorio
 * Satisfactory
 * Vintage Story
 * Stationeers
 
-## On my radar
+### On my radar
 * Rust
 * Dayz
 * Papermc
 
-## Installation Guide
+# Installation Guide
 
-### Dependencies
+## Dependencies
 * Linux (ubuntu >18, debian >10, or centos 8 is preferable, in that order) (please see LinuxGSM's site for its recomendations)
 * python 3
 * python-pip
 * discord.py
 * git (it helps but you cooould do it without)
 
-### Discord
+## Discord
  For this to work you'll need a discord bot with an api key,
  an actual guide on how to do this is here -> https://discordpy.readthedocs.io/en/stable/discord.html
  but i'll just assume you know how to do that (because i'm a terrible teacher :P )
  now that you have that sweet api key make a file called *checks notes* 'DiscordApiKey.txt' (case sensitive), and then paste the key in there and save it (hold onto this for later)
 
-### Steam User
+## Steam User
  This part is simple: simply go into you terminal and add a user with
  
     `sudo adduser steam`
@@ -55,7 +55,7 @@ I only really plan on implementing games that I play, but i can be swaded with a
  
      `su - steam`
 
-### Downloading The Script
+## Downloading The Script
  Start by making a directory in the steam users home folder called 'python' then
  use Git to pull the code from github
 
@@ -65,7 +65,7 @@ Also make sure to place the discord api key file in the python directory
 
     `git clone https://github.com/PI22-7/H.E.C.git `
 
-### Run The Script
+## Run The Script
  To run the script, start by making sure your in the correct directory (~/python/HEC)
 
  Next, run the following
@@ -75,7 +75,7 @@ Also make sure to place the discord api key file in the python directory
  You can also make this script start on launch for simplicity (the methods for this vary wildly but using systemd might be the best idea)
  this guide here should give a good starting point (https://www.howtogeek.com/687970/how-to-run-a-linux-program-at-startup-with-systemd/)
 
-### LinuxGSM
+## LinuxGSM
  Now that the script indeed starts and your bot comes online, now is a good time to shut it down and begin the linux game server manager installation, I left this out of the depedencies as it needs to be installed in a specific way for the script to work
 
  Start by going to the website (https://linuxgsm.com/servers/) and look for a game server that you want to install (make sure my script supports it see above), now follow the given installation process, however **make sure to do the following** do not create a user for the server and let the script install to the default location (make sure you are in the steam users home directory 'cd ~' to get there), now that you know that continue by following the rest of the tutorial as normal  (https://linuxgsm.com/servers/) 
