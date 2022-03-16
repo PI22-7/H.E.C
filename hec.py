@@ -65,7 +65,7 @@ async def stop(ctx):
         await ctx.send('minecraft server shutting down')
   
     elif serverstatus == 'running project zomboid':
-        os.system('./pzserver stop')
+        os.system('cd ~ && ./pzserver stop')
         await ctx.send('project zomboid server shutting down')
     else:
         ctx.send('no server running')
@@ -102,17 +102,18 @@ async def minecraft(ctx):
     if serverstatus == 'free':
         await ctx.send('commencing vanilla minecraft server launch')
         print('vanilla minecraft server spooling up')
-        os.system('cd /opt/scripts/ && sudo ./mcstart.sh ')
+ #       os.system('cd /opt/scripts/ && sudo ./mcstart.sh ')
         await bot.change_presence(activity=discord.Game(name='vanilla minecraft'))
         serverstatus = 'running minecraft'
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
 
+#first implementation of linuxGSM, simplifies shit A lot!!!
 @bot.command()
 async def projectzomboid(ctx):
     global serverstatus
     if serverstatus == 'free':
-        os.system('./pzserver start')
+        os.system('cd ~ && ./pzserver start')
         await ctx.send('starting projectzomboid server')
         await bot.change_presence(activity=discord.Game(name='project zomboid'))
         serverstatus = 'running project zomboid'
