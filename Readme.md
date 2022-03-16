@@ -56,14 +56,16 @@ I only really plan on implementing games that I play, but i can be swaded with a
      `su - steam`
 
 ## Downloading The Script
- Start by making a directory in the steam users home folder called 'python' then
- use Git to pull the code from github
+ Move to your home directory then clone the repos
 
-    `touch python && cd python`
-
-Also make sure to place the discord api key file in the python directory 
-
+    `cd ~`
     `git clone https://github.com/PI22-7/H.E.C.git `
+    
+ Cd into the cloned directory then copy the files and place them inside a new folder called 'hec' !(temporary will devise a better method of this later)!
+
+    `cd ~ && touch hec`    
+
+ Then place the API key within the new 'hec' folder
 
 ## Run The Script
  To run the script, start by making sure your in the correct directory (~/python/HEC)
