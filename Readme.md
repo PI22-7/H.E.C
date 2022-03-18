@@ -45,25 +45,25 @@ I only really plan on implementing games that I play, but i can be swaded with a
 ## Steam User
  This part is simple: simply go into you terminal and add a user with
  
-    `sudo adduser steam`
+    sudo adduser steam
 
  Then give sudo permissions
  
-     `sudo usermod -a -G sudo steam`
+     sudo usermod -a -G sudo steam
  
  Lastly swap to them
  
-     `su - steam`
+     su - steam
 
 ## Downloading The Script
  Move to your home directory then clone the repos
 
-    `cd ~`
-    `git clone https://github.com/PI22-7/H.E.C.git `
-    
+    cd ~
+    git clone https://github.com/PI22-7/H.E.C.git
+   
  Cd into the cloned directory then copy the files and place them inside a new folder called 'hec' !(temporary will devise a better method of this later)!
 
-    `cd ~ && touch hec`    
+    cd ~ && touch hec 
 
  Then place the API key within the new 'hec' folder
 
@@ -72,7 +72,7 @@ I only really plan on implementing games that I play, but i can be swaded with a
 
  Next, run the following
 
-    `python3 hec.py`
+    python3 hec.py
 
  You can also make this script start on launch for simplicity (the methods for this vary wildly but using systemd might be the best idea)
  this guide here should give a good starting point (https://www.howtogeek.com/687970/how-to-run-a-linux-program-at-startup-with-systemd/)
