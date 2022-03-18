@@ -79,7 +79,8 @@ async def stop(ctx):
         serverstatus = 'free'
 
     else:
-        ctx.send('no server running')
+        await ctx.send('no server running')
+        await bot.change_presence(activity=discord.Game(name='Idle'))
     
     await ctx.send('done')
 
@@ -138,7 +139,7 @@ async def valheim(ctx):
     if serverstatus == 'free':
         os.system('cd ~ && ./vhserver start')
         await ctx.send('starting valheim server')
-        await bot.change_presence(activity=discord.Game(name='project zomboid'))
+        await bot.change_presence(activity=discord.Game(name='valheim'))
         serverstatus = 'running valheim'
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
