@@ -73,7 +73,7 @@ async def stop(ctx):
         serverstatus = 'free'
 
     elif serverstatus == 'running valheim':
-        os.system('cd ~ && ./valheimserver stop')
+        os.system('cd ~ && ./vhserver stop')
         await ctx.send ('valheim server shutting down')
         await bot.change_presence(activity=discord.Game(name='Idle'))
         serverstatus = 'free'
@@ -136,7 +136,7 @@ async def projectzomboid(ctx):
 async def valheim(ctx):
     global serverstatus
     if serverstatus == 'free':
-        os.system('cd ~ && ./valheimserver start')
+        os.system('cd ~ && ./vhserver start')
         await ctx.send('starting valheim server')
         await bot.change_presence(activity=discord.Game(name='project zomboid'))
         serverstatus = 'running valheim'
