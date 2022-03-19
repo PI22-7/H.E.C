@@ -31,10 +31,10 @@ I only really plan on implementing games that I play, but i can be swaded with a
 
 ### Dependencies
 * Linux (ubuntu >18, debian >10, or centos 8 is preferable, in that order) (please see LinuxGSM's site for its recomendations)
-* python 3
+* python3
 * python-pip
-* discord.py
-* git (it helps but you cooould do it without)
+* discord.py (explained later)
+* git
 
 ## Discord
  For this to work you'll need a discord bot with an api key,
@@ -56,9 +56,12 @@ I only really plan on implementing games that I play, but i can be swaded with a
      su - steam
 
 ## Downloading The Script
- Move to your home directory then clone the repos
+ Move to your home directory
 
     cd ~
+
+ Then clone the repos    
+
     git clone https://github.com/PI22-7/H.E.C.git
    
  Then place the API key into the 'H.E.C' folder
@@ -68,7 +71,11 @@ I only really plan on implementing games that I play, but i can be swaded with a
   
     cd ~/H.E.C
 
-Next, run the following
+ Run pip to install the discord.py dependency
+
+    pip install discord.py
+
+ Then run the actual script
 
     python3 hec.py
 
