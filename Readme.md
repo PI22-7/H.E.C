@@ -40,7 +40,7 @@ I only really plan on implementing games that I play, but i can be swaded with a
  For this to work you'll need a discord bot with an api key,
  an actual guide on how to do this is here -> https://discordpy.readthedocs.io/en/stable/discord.html
  but i'll just assume you know how to do that (because i'm a terrible teacher :P )
- now that you have that sweet api key make a file called *checks notes* 'DiscordApiKey.txt' (case sensitive), and then paste the key in there and save it (hold onto this for later)
+ now that you have that sweet api key make a file called 'DiscordApiKey.txt' (case sensitive), and then paste the key in there and save it (hold onto this for later)
 
 ## Steam User
  This part is simple: simply go into you terminal and add a user with
