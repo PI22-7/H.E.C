@@ -44,45 +44,65 @@ async def man(ctx):
     await ctx.send('more game support coming soon')
 
 
-# piggybacks off linuxgsm for start/stop functionalities 
+# piggybacks off linuxgsm for start/stop functionalities
+# this is the logic behind our stop command
 @bot.command() 
 async def stop(ctx):
-    global serverstatus
     if serverstatus == 'running starbound':
-        os.system('cd ~ && ./starboundserver stop')
-        await ctx.send('starbound server shut down')
-        await bot.change_presence(activity=discord.Game(name='Idle'))
-        serverstatus = 'free'
-
+        do_stop_starbound(ctx)
     elif serverstatus == 'running terraria':
-        os.system('cd ~ && ./terraria stop')
-        await ctx.send('terraria server shutting down')
-        await bot.change_presence(activity=discord.Game(name='Idle'))
-        serverstatus = 'free'
-
+        do_stop_terraria(ctx)
     elif serverstatus == 'running minecraft':
-        os.system('cd ~ && ./minecraftserver stop')   
-        await ctx.send('minecraft server shutting down')
-        await bot.change_presence(activity=discord.Game(name='Idle'))
-        serverstatus = 'free'
-  
-    elif serverstatus == 'running project zomboid':
-        os.system('cd ~ && ./pzserver stop')
-        await ctx.send('project zomboid server shutting down')
-        await bot.change_presence(activity=discord.Game(name='Idle'))
-        serverstatus = 'free'
-
+        do_stop_minecraft(ctx)
+    elif serverstatus == 'running zomboid':
+        do_stop_zomboid(ctx)
     elif serverstatus == 'running valheim':
-        os.system('cd ~ && ./vhserver stop')
-        await ctx.send ('valheim server shutting down')
-        await bot.change_presence(activity=discord.Game(name='Idle'))
-        serverstatus = 'free'
-
+        do_stop_valheim(ctx)
     else:
-        await ctx.send('no server running')
-        await bot.change_presence(activity=discord.Game(name='Idle'))
+        do_idle(ctx)
+
+
+
+@bot.command()
+async def do_stop_starbound(ctx):
+    os.system('cd ~ && ./starboundserver stop')
+    await ctx.send('starbound server shut down')
+    await bot.change_presence(activity=discord.Game(name='Idle'))
+    serverstatus = 'free'
     
-    await ctx.send('done')
+
+async def do_stop_terraria(ctx):
+    os.system('cd ~ && ./terraria stop')
+    await ctx.send('terraria server shutting down')
+    await bot.change_presence(activity=discord.Game(name='Idle'))
+    serverstatus = 'free'
+    
+
+async def do_stop_minecraft(ctx):
+    os.system('cd ~ && ./minecraftserver stop')   
+    await ctx.send('minecraft server shutting down')
+    await bot.change_presence(activity=discord.Game(name='Idle'))
+    serverstatus = 'free'
+    
+    
+async def do_stop_zomboid(ctx):
+    os.system('cd ~ && ./pzserver stop')
+    await ctx.send('project zomboid server shutting down')
+    await bot.change_presence(activity=discord.Game(name='Idle'))
+    serverstatus = 'free'
+    
+
+async def do_stop_valheim(ctx):
+    os.system('cd ~ && ./vhserver stop')
+    await ctx.send ('valheim server shutting down')
+    await bot.change_presence(activity=discord.Game(name='Idle'))
+    serverstatus = 'free'
+      
+
+async def do_idle(ctx):
+    await ctx.send('no server running')
+    await bot.change_presence(activity=discord.Game(name='Idle'))
+
 
 # again uses linuxgsm's start command as well as preventing other server launches (max 1 at once)
 @bot.command()
@@ -129,7 +149,7 @@ async def projectzomboid(ctx):
         os.system('cd ~ && ./pzserver start')
         await ctx.send('starting projectzomboid server')
         await bot.change_presence(activity=discord.Game(name='project zomboid'))
-        serverstatus = 'running project zomboid'
+        serverstatus = 'running zomboid'
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
 
