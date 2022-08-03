@@ -7,8 +7,9 @@ import discord
 from discord.ext import commands
 
 # TODO
-# This is an excessive amount of "if" statements, prob could use a better implementation
-# This is to be regarded as a human limitation -> i'll keep learning and see what i can do to improve my shitty code :P
+# readability > slight preformance increases, if I wanted performance id use C :P
+# rust remake when?
+
 
 # bot prefix + apikey read output
 bot = commands.Bot(command_prefix='$')
@@ -49,57 +50,51 @@ async def man(ctx):
 @bot.command() 
 async def stop(ctx):
     if serverstatus == 'running starbound':
-        do_stop_starbound(ctx)
+        stop_starbound(ctx)
     elif serverstatus == 'running terraria':
-        do_stop_terraria(ctx)
+        stop_terraria(ctx)
     elif serverstatus == 'running minecraft':
-        do_stop_minecraft(ctx)
+        stop_minecraft(ctx)
     elif serverstatus == 'running zomboid':
-        do_stop_zomboid(ctx)
+        stop_zomboid(ctx)
     elif serverstatus == 'running valheim':
-        do_stop_valheim(ctx)
+        stop_valheim(ctx)
     else:
-        do_idle(ctx)
-
+        idle(ctx)
 
 
 @bot.command()
-async def do_stop_starbound(ctx):
+async def stop_starbound(ctx):
     os.system('cd ~ && ./starboundserver stop')
     await ctx.send('starbound server shut down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
     
-
-async def do_stop_terraria(ctx):
+async def stop_terraria(ctx):
     os.system('cd ~ && ./terraria stop')
     await ctx.send('terraria server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
     
-
-async def do_stop_minecraft(ctx):
+async def stop_minecraft(ctx):
     os.system('cd ~ && ./minecraftserver stop')   
     await ctx.send('minecraft server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
     
-    
-async def do_stop_zomboid(ctx):
+async def stop_zomboid(ctx):
     os.system('cd ~ && ./pzserver stop')
     await ctx.send('project zomboid server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
     
-
-async def do_stop_valheim(ctx):
+async def stop_valheim(ctx):
     os.system('cd ~ && ./vhserver stop')
     await ctx.send ('valheim server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
       
-
-async def do_idle(ctx):
+async def idle(ctx):
     await ctx.send('no server running')
     await bot.change_presence(activity=discord.Game(name='Idle'))
 
@@ -143,7 +138,7 @@ async def minecraft(ctx):
 
 #first implementation of linuxGSM, simplifies shit A lot!!!
 @bot.command()
-async def projectzomboid(ctx):
+async def zomboid(ctx):
     global serverstatus
     if serverstatus == 'free':
         os.system('cd ~ && ./pzserver start')
