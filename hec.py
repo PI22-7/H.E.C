@@ -6,13 +6,15 @@ import time
 import discord
 from discord.ext import commands
 
+
 # TODO
 # readability > slight preformance increases, if I wanted performance id use C :P
 # rust remake when?
 
 
 # bot prefix + apikey read output
-bot = commands.Bot(command_prefix='$')
+intents = discord.Intents.all()
+bot = commands.Bot(command_prefix='$', intents=intents)
 apiKey = "discordApiKey.txt"
 serverstatus = 'free'
 
