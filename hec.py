@@ -17,6 +17,7 @@ intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='$', intents=intents)
 apiKey = "discordApiKey.txt"
 serverstatus = 'free'
+bot.remove_command('help')
 
 # Reads from the apikey file (discordApiKey.txt)
 with open(apiKey) as f:
@@ -26,17 +27,18 @@ with open(apiKey) as f:
 #    return check_output(["pidof,name"])
 
 
-# basic ping command
+# advanced ping command
 @bot.command()
 async def ping(ctx):
-   await ctx.send('pong')
+    await ctx.send('Pong! My latency is {0}ms'.format(round(bot.latency * 1000)))
 
 # shows manual entry in an embeded format
+
 @bot.command()
-async def man(ctx):
+async def help(ctx):
     embed = discord.Embed(color=11768407)
-    embed.add_field(name='man', value='displays this manual entry', inline=False)
-    embed.add_field(name='ping', value='pong', inline=False)
+    embed.add_field(name='help', value='displays this menu', inline=False)
+    embed.add_field(name='ping', value='pong with latency', inline=False)
     embed.add_field(name='valheim', value='starts the valheim server', inline=False)
     embed.add_field(name='starbound', value='starts the starbound server', inline=False)
     embed.add_field(name='terraria', value='starts the terraria server', inline=False)
