@@ -69,30 +69,35 @@ async def stop(ctx):
 
 @bot.command()
 async def stop_starbound(ctx):
+    global serverstatus
     os.system('cd ~ && ./starboundserver stop')
     await ctx.send('starbound server shut down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
     
 async def stop_terraria(ctx):
+    global serverstatus
     os.system('cd ~ && ./terraria stop')
     await ctx.send('terraria server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
     
 async def stop_minecraft(ctx):
+    global serverstatus
     os.system('cd ~ && ./minecraftserver stop')   
     await ctx.send('minecraft server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
     
 async def stop_zomboid(ctx):
+    global serverstatus
     os.system('cd ~ && ./pzserver stop')
     await ctx.send('project zomboid server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
     
 async def stop_valheim(ctx):
+    global serverstatus
     os.system('cd ~ && ./vhserver stop')
     await ctx.send ('valheim server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
