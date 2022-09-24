@@ -54,17 +54,17 @@ async def help(ctx):
 @bot.command() 
 async def stop(ctx):
     if serverstatus == 'running starbound':
-        stop_starbound(ctx)
+        await stop_starbound(ctx)
     elif serverstatus == 'running terraria':
-        stop_terraria(ctx)
+        await stop_terraria(ctx)
     elif serverstatus == 'running minecraft':
-        stop_minecraft(ctx)
+        await stop_minecraft(ctx)
     elif serverstatus == 'running zomboid':
-        stop_zomboid(ctx)
+        await stop_zomboid(ctx)
     elif serverstatus == 'running valheim':
-        stop_valheim(ctx)
+        await stop_valheim(ctx)
     else:
-        idle(ctx)
+        await idle(ctx)
 
 
 @bot.command()
