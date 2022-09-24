@@ -74,35 +74,40 @@ async def stop_starbound(ctx):
     await ctx.send('starbound server shut down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
-    
+
+
 async def stop_terraria(ctx):
     global serverstatus
     os.system('cd ~ && ./terraria stop')
     await ctx.send('terraria server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
-    
+
+
 async def stop_minecraft(ctx):
     global serverstatus
     os.system('cd ~ && ./minecraftserver stop')   
     await ctx.send('minecraft server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
-    
+
+
 async def stop_zomboid(ctx):
     global serverstatus
     os.system('cd ~ && ./pzserver stop')
     await ctx.send('project zomboid server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
-    
+
+
 async def stop_valheim(ctx):
     global serverstatus
     os.system('cd ~ && ./vhserver stop')
     await ctx.send ('valheim server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
-      
+
+
 async def idle(ctx):
     await ctx.send('no server running')
     await bot.change_presence(activity=discord.Game(name='Idle'))
@@ -121,6 +126,7 @@ async def starbound(ctx):
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
 
+
 @bot.command()
 async def terraria(ctx):
     global serverstatus
@@ -132,6 +138,7 @@ async def terraria(ctx):
         serverstatus = 'running terraria'
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
+
 
 @bot.command()
 async def minecraft(ctx):
@@ -145,6 +152,7 @@ async def minecraft(ctx):
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
 
+
 #first implementation of linuxGSM, simplifies shit A lot!!!
 @bot.command()
 async def zomboid(ctx):
@@ -157,6 +165,7 @@ async def zomboid(ctx):
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
 
+
 @bot.command()
 async def valheim(ctx):
     global serverstatus
@@ -167,8 +176,6 @@ async def valheim(ctx):
         serverstatus = 'running valheim'
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
-
-
 
 
 # runs from api key file output, closes api key file
