@@ -32,8 +32,8 @@ with open(apiKey) as f:
 async def ping(ctx):
     await ctx.send('Pong! My latency is {0}ms'.format(round(bot.latency * 1000)))
 
-# shows manual entry in an embeded format
 
+# shows manual entry in an embeded format
 @bot.command()
 async def help(ctx):
     embed = discord.Embed(color=11768407)
