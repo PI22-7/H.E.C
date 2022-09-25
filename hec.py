@@ -65,7 +65,7 @@ async def stop(ctx):
 
 async def stop_starbound(ctx):
     global serverstatus
-    os.system('cd ~ && ./starboundserver stop')
+    os.system('cd ~/H.E.C/starbound && ./starboundserver stop')
     await ctx.send('starbound server shut down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
@@ -73,7 +73,7 @@ async def stop_starbound(ctx):
 
 async def stop_terraria(ctx):
     global serverstatus
-    os.system('cd ~ && ./terraria stop')
+    os.system('cd/H.E.C/terraria ~ && ./terrariaserver stop')
     await ctx.send('terraria server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
@@ -81,7 +81,7 @@ async def stop_terraria(ctx):
 
 async def stop_minecraft(ctx):
     global serverstatus
-    os.system('cd ~ && ./minecraftserver stop')
+    os.system('cd/H.E.C/papermc ~ && ./pmcserver stop')
     await ctx.send('minecraft server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
@@ -89,7 +89,7 @@ async def stop_minecraft(ctx):
 
 async def stop_zomboid(ctx):
     global serverstatus
-    os.system('cd ~ && ./pzserver stop')
+    os.system('cd ~/H.E.C/projectZomboid && ./pzserver stop')
     await ctx.send('project zomboid server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
@@ -97,7 +97,7 @@ async def stop_zomboid(ctx):
 
 async def stop_valheim(ctx):
     global serverstatus
-    os.system('cd ~ && ./vhserver stop')
+    os.system('cd ~/H.E.C/valheim && ./vhserver stop')
     await ctx.send('valheim server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
@@ -114,7 +114,7 @@ async def starbound(ctx):
     global serverstatus
     if serverstatus == 'free':
         await ctx.send('commencing starbound launch')
-        os.system('cd ~ && ./starboundserver start')
+        os.system('cd ~/H.E.C/starbound && ./starboundserver start')
         #        print('starbound server spooling up')
         await bot.change_presence(activity=discord.Game(name='starbound'))
         serverstatus = 'running starbound'
@@ -127,7 +127,7 @@ async def terraria(ctx):
     global serverstatus
     if serverstatus == 'free':
         await ctx.send('commencing terraria server launch')
-        os.system('cd ~ && ./terrariaserver start')
+        os.system('cd ~/H.E.C/terraria && ./terrariaserver start')
         #        print('terraria server spooling up')
         await bot.change_presence(activity=discord.Game(name='terraria'))
         serverstatus = 'running terraria'
@@ -140,7 +140,7 @@ async def minecraft(ctx):
     global serverstatus
     if serverstatus == 'free':
         await ctx.send('commencing vanilla minecraft server launch')
-        os.system('cd ~ && ./minecraftserver start')
+        os.system('cd ~/H.E.C/papermc && ./pmcserver start')
         #        print('vanilla minecraft server spooling up')
         await bot.change_presence(activity=discord.Game(name='vanilla minecraft'))
         serverstatus = 'running minecraft'
@@ -153,7 +153,7 @@ async def minecraft(ctx):
 async def zomboid(ctx):
     global serverstatus
     if serverstatus == 'free':
-        os.system('cd ~ && ./pzserver start')
+        os.system('cd ~/H.E.C/projectZomboid && ./pzserver start')
         await ctx.send('starting projectzomboid server')
         await bot.change_presence(activity=discord.Game(name='project zomboid'))
         serverstatus = 'running zomboid'
@@ -165,7 +165,7 @@ async def zomboid(ctx):
 async def valheim(ctx):
     global serverstatus
     if serverstatus == 'free':
-        os.system('cd ~ && ./vhserver start')
+        os.system('cd ~/H.E.C/valheim && ./vhserver start')
         await ctx.send('starting valheim server')
         await bot.change_presence(activity=discord.Game(name='valheim'))
         serverstatus = 'running valheim'
