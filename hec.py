@@ -1,11 +1,6 @@
-from http import server
 import os
-import subprocess
-from subprocess import check_output
-import time
 import discord
 from discord.ext import commands
-
 
 # TODO
 # readability > slight preformance increases, if I wanted performance id use C :P
@@ -22,8 +17,9 @@ bot.remove_command('help')
 # Reads from the apikey file (discordApiKey.txt)
 with open(apiKey) as f:
     key = f.read()
-    
-#def get_pid(name):
+
+
+# def get_pid(name):
 #    return check_output(["pidof,name"])
 
 
@@ -51,7 +47,7 @@ async def help(ctx):
 
 # piggybacks off linuxgsm for start/stop functionalities
 # this is the logic behind our stop command
-@bot.command() 
+@bot.command()
 async def stop(ctx):
     if serverstatus == 'running starbound':
         await stop_starbound(ctx)
@@ -85,7 +81,7 @@ async def stop_terraria(ctx):
 
 async def stop_minecraft(ctx):
     global serverstatus
-    os.system('cd ~ && ./minecraftserver stop')   
+    os.system('cd ~ && ./minecraftserver stop')
     await ctx.send('minecraft server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
@@ -119,7 +115,7 @@ async def starbound(ctx):
     if serverstatus == 'free':
         await ctx.send('commencing starbound launch')
         os.system('cd ~ && ./starboundserver start')
-#        print('starbound server spooling up')
+        #        print('starbound server spooling up')
         await bot.change_presence(activity=discord.Game(name='starbound'))
         serverstatus = 'running starbound'
     else:
@@ -132,7 +128,7 @@ async def terraria(ctx):
     if serverstatus == 'free':
         await ctx.send('commencing terraria server launch')
         os.system('cd ~ && ./terrariaserver start')
-#        print('terraria server spooling up')
+        #        print('terraria server spooling up')
         await bot.change_presence(activity=discord.Game(name='terraria'))
         serverstatus = 'running terraria'
     else:
@@ -141,18 +137,18 @@ async def terraria(ctx):
 
 @bot.command()
 async def minecraft(ctx):
-    global serverstatus 
+    global serverstatus
     if serverstatus == 'free':
         await ctx.send('commencing vanilla minecraft server launch')
         os.system('cd ~ && ./minecraftserver start')
-#        print('vanilla minecraft server spooling up')
+        #        print('vanilla minecraft server spooling up')
         await bot.change_presence(activity=discord.Game(name='vanilla minecraft'))
         serverstatus = 'running minecraft'
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
 
 
-#first implementation of linuxGSM, simplifies shit A lot!!!
+# first implementation of linuxGSM, simplifies shit A lot!!!
 @bot.command()
 async def zomboid(ctx):
     global serverstatus
