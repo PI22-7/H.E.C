@@ -107,7 +107,7 @@ async def stop_valheim(ctx):
 
 async def stop_vintagestory(ctx):
     global serverstatus
-    os.system('cd ~/H.E.C/vintageStory && ./vintserver stop')
+    os.system('cd ~/H.E.C/vintageStory && ./vintsserver stop')
     await ctx.send('vintage story server shutting down')
     await bot.change_presence(activity=discord.Game(name='Idle'))
     serverstatus = 'free'
@@ -187,14 +187,12 @@ async def valheim(ctx):
 async def vintagestory(ctx):
     global serverstatus
     if serverstatus == 'free':
-        os.system('cd ~/H.E.C/vintageStory && ./vintserver start')
+        os.system('cd ~/H.E.C/vintageStory && ./vintsserver start')
         await ctx.send('starting vintage story server')
         await bot.change_presence(activity=discord.Game(name='vintage story'))
         serverstatus = 'running vintagestory'
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
-
-
 
 
 # runs from api key file output, closes api key file
