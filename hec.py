@@ -229,3 +229,4 @@ async def vintagestory(ctx):
 # runs from api key file output, closes api key file
 bot.run(key)
 apiKey.close()
+rconKey.close()
