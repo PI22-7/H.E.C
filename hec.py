@@ -181,7 +181,7 @@ async def moddedmc(ctx):
     global serverstatus
     if serverstatus == 'free':
         await ctx.send('commencing stoneblock minecraft server launch')
-        os.system('cd ~/H.E.C/moddedmc/1.12.2/stoneBlock2 && ./start.sh')
+        os.system('cd ~/H.E.C/moddedmc/1.12.2/stoneBlock2 && ./start.sh &')
         #        print('modded minecraft server spooling up')
         await bot.change_presence(activity=discord.Game(name='modded minecraft'))
         serverstatus = 'running minecraft'
