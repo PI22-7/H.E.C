@@ -119,6 +119,8 @@ async def stop_vintagestory(ctx):
     serverstatus = 'free'
 
 
+@bot.command()
+#^ forgot this so tequilla :(
 # hopefully no tequilla
 async def stop_moddedmc(ctx):
     global serverstatus
