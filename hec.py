@@ -1,5 +1,7 @@
 import os
 import discord
+import aiomcrcon
+from aiomcrcon import Client
 from discord.ext import commands
 
 # TODO
@@ -11,12 +13,16 @@ from discord.ext import commands
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='$', intents=intents)
 apiKey = "discordApiKey.txt"
+rconKey = "rconKey.txt"
 serverstatus = 'free'
 bot.remove_command('help')
 
 # Reads from the apikey file (discordApiKey.txt)
 with open(apiKey) as f:
     key = f.read()
+
+with open(rconKey) as d:
+    pwod = d.read()
 
 
 # def get_pid(name):
@@ -113,6 +119,17 @@ async def stop_vintagestory(ctx):
     serverstatus = 'free'
 
 
+# hopefully no tequilla
+async def stop_moddedmc(ctx):
+    global serverstatus
+    client = Client("50.71.74.235", 25566, pwod)
+    await client.connect()
+    await client.send_cmd("stop")
+    await ctx.send('moddedmc server shutting down')
+    await bot.change_presence(activity=discord.Game(name='Idle'))
+    serverstatus = 'free'
+
+
 async def idle(ctx):
     await ctx.send('no server running')
     await bot.change_presence(activity=discord.Game(name='Idle'))
@@ -153,6 +170,20 @@ async def minecraft(ctx):
         os.system('cd ~/H.E.C/papermc && ./pmcserver start')
         #        print('vanilla minecraft server spooling up')
         await bot.change_presence(activity=discord.Game(name='vanilla minecraft'))
+        serverstatus = 'running minecraft'
+    else:
+        await ctx.send('server is busy use "$kill" to kill any instances')
+
+
+# yann says im drunk so i shouldnt comment this
+@bot.command()
+async def moddedmc(ctx):
+    global serverstatus
+    if serverstatus == 'free':
+        await ctx.send('commencing stoneblock minecraft server launch')
+        os.system('cd ~/H.E.C/moddedmc/1.12.2/stoneBlock2 && ./start.sh')
+        #        print('modded minecraft server spooling up')
+        await bot.change_presence(activity=discord.Game(name='modded minecraft'))
         serverstatus = 'running minecraft'
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
