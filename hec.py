@@ -124,7 +124,7 @@ async def stop_vintagestory(ctx):
 # hopefully no tequilla
 async def stop_moddedmc(ctx):
     global serverstatus
-    client = Client("50.71.74.235", 25566, pwod)
+    client = Client("192.168.0.35", 25566, pwod)
     await client.connect()
     await client.send_cmd("stop")
     await ctx.send('moddedmc server shutting down')
