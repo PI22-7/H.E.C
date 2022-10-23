@@ -67,6 +67,8 @@ async def stop(ctx):
         await stop_valheim(ctx)
     elif serverstatus == 'running vintagestory':
         await stop_vintagestory(ctx)
+    elif serverstatus == 'running modded minecraft':
+        await stop_moddedmc
     else:
         await idle(ctx)
 
@@ -186,7 +188,7 @@ async def moddedmc(ctx):
         os.system('cd ~/H.E.C/moddedmc/1.12.2/stoneBlock2 && ./start.sh &')
         #        print('modded minecraft server spooling up')
         await bot.change_presence(activity=discord.Game(name='modded minecraft'))
-        serverstatus = 'running minecraft'
+        serverstatus = 'running modded minecraft'
     else:
         await ctx.send('server is busy use "$kill" to kill any instances')
 
