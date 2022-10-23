@@ -1,10 +1,10 @@
 import os
 import discord
 from discord.ext import commands
+from discord import app_commands
 
 # TODO
-# readability > slight preformance increases, if I wanted performance id use C :P
-# rust remake when?
+#
 
 
 # bot prefix + apikey read output
