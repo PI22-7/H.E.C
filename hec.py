@@ -68,7 +68,7 @@ async def stop(ctx):
     elif serverstatus == 'running vintagestory':
         await stop_vintagestory(ctx)
     elif serverstatus == 'running modded minecraft':
-        await stop_moddedmc
+        await stop_moddedmc(ctx)
     else:
         await idle(ctx)
 
