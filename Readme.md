@@ -21,11 +21,8 @@ I only really plan on implementing games that I play, but i can be swaded with a
 * Satisfactory
 * Vintage Story
 * Stationeers
+* PaperMC
 
-### On my radar
-* Rust
-* Dayz
-* Papermc
 
 # Installation Guide:
 
