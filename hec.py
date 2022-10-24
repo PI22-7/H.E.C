@@ -1,5 +1,7 @@
 import os
 import discord
+import aiomcrcon
+from aiomcrcon import Client
 from discord.ext import commands
 from discord import app_commands
 
@@ -11,12 +13,16 @@ from discord import app_commands
 intents = discord.Intents.all()
 bot = commands.Bot(command_prefix='$', intents=intents)
 apiKey = "discordApiKey.txt"
+rconKey = "rconKey.txt"
 serverstatus = 'free'
 bot.remove_command('help')
 
 # Reads from the apikey file (discordApiKey.txt)
 with open(apiKey) as f:
     key = f.read()
+
+with open(rconKey) as d:
+    pwod = d.read()
 
 
 # def get_pid(name):
@@ -61,6 +67,8 @@ async def stop(ctx):
         await stop_valheim(ctx)
     elif serverstatus == 'running vintagestory':
         await stop_vintagestory(ctx)
+    elif serverstatus == 'running modded minecraft':
+        await stop_moddedmc(ctx)
     else:
         await idle(ctx)
 
@@ -113,6 +121,19 @@ async def stop_vintagestory(ctx):
     serverstatus = 'free'
 
 
+#@bot.command()
+#^ forgot this so tequilla :(
+# hopefully no tequilla
+async def stop_moddedmc(ctx):
+    global serverstatus
+    client = Client("192.168.0.35", 25566, pwod)
+    await client.connect()
+    await client.send_cmd("stop")
+    await ctx.send('moddedmc server shutting down')
+    await bot.change_presence(activity=discord.Game(name='Idle'))
+    serverstatus = 'free'
+
+
 async def idle(ctx):
     await ctx.send('no server running')
     await bot.change_presence(activity=discord.Game(name='Idle'))
@@ -129,7 +150,7 @@ async def starbound(ctx):
         await bot.change_presence(activity=discord.Game(name='starbound'))
         serverstatus = 'running starbound'
     else:
-        await ctx.send('server is busy use "$kill" to kill any instances')
+        await ctx.send('server is busy use "$stop" to kill any instances')
 
 
 @bot.command()
@@ -142,7 +163,7 @@ async def terraria(ctx):
         await bot.change_presence(activity=discord.Game(name='terraria'))
         serverstatus = 'running terraria'
     else:
-        await ctx.send('server is busy use "$kill" to kill any instances')
+        await ctx.send('server is busy use "$stop" to kill any instances')
 
 
 @bot.command()
@@ -155,7 +176,21 @@ async def minecraft(ctx):
         await bot.change_presence(activity=discord.Game(name='vanilla minecraft'))
         serverstatus = 'running minecraft'
     else:
-        await ctx.send('server is busy use "$kill" to kill any instances')
+        await ctx.send('server is busy use "$stop" to kill any instances')
+
+
+# yann says im drunk so i shouldnt comment this
+@bot.command()
+async def moddedmc(ctx):
+    global serverstatus
+    if serverstatus == 'free':
+        await ctx.send('commencing stoneblock minecraft server launch')
+        os.system('cd ~/H.E.C/moddedmc/1.12.2/stoneBlock2 && ./start.sh &')
+        #        print('modded minecraft server spooling up')
+        await bot.change_presence(activity=discord.Game(name='modded minecraft'))
+        serverstatus = 'running modded minecraft'
+    else:
+        await ctx.send('server is busy use "$stop" to kill any instances')
 
 
 # first implementation of linuxGSM, simplifies shit A lot!!!
@@ -168,7 +203,7 @@ async def zomboid(ctx):
         await bot.change_presence(activity=discord.Game(name='project zomboid'))
         serverstatus = 'running zomboid'
     else:
-        await ctx.send('server is busy use "$kill" to kill any instances')
+        await ctx.send('server is busy use "$stop" to kill any instances')
 
 
 @bot.command()
@@ -180,7 +215,7 @@ async def valheim(ctx):
         await bot.change_presence(activity=discord.Game(name='valheim'))
         serverstatus = 'running valheim'
     else:
-        await ctx.send('server is busy use "$kill" to kill any instances')
+        await ctx.send('server is busy use "$stop" to kill any instances')
 
 
 @bot.command()
@@ -192,9 +227,10 @@ async def vintagestory(ctx):
         await bot.change_presence(activity=discord.Game(name='vintage story'))
         serverstatus = 'running vintagestory'
     else:
-        await ctx.send('server is busy use "$kill" to kill any instances')
+        await ctx.send('server is busy use "$stop" to kill any instances')
 
 
 # runs from api key file output, closes api key file
 bot.run(key)
 apiKey.close()
+rconKey.close()
