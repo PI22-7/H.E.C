@@ -121,7 +121,7 @@ async def stop_vintagestory(ctx):
     serverstatus = 'free'
 
 
-@bot.command()
+#@bot.command()
 #^ forgot this so tequilla :(
 # hopefully no tequilla
 async def stop_moddedmc(ctx):
@@ -150,7 +150,7 @@ async def starbound(ctx):
         await bot.change_presence(activity=discord.Game(name='starbound'))
         serverstatus = 'running starbound'
     else:
-        await ctx.send('server is busy use "$kill" to kill any instances')
+        await ctx.send('server is busy use "$stop" to kill any instances')
 
 
 @bot.command()
@@ -163,7 +163,7 @@ async def terraria(ctx):
         await bot.change_presence(activity=discord.Game(name='terraria'))
         serverstatus = 'running terraria'
     else:
-        await ctx.send('server is busy use "$kill" to kill any instances')
+        await ctx.send('server is busy use "$stop" to kill any instances')
 
 
 @bot.command()
@@ -176,7 +176,7 @@ async def minecraft(ctx):
         await bot.change_presence(activity=discord.Game(name='vanilla minecraft'))
         serverstatus = 'running minecraft'
     else:
-        await ctx.send('server is busy use "$kill" to kill any instances')
+        await ctx.send('server is busy use "$stop" to kill any instances')
 
 
 # yann says im drunk so i shouldnt comment this
@@ -190,7 +190,7 @@ async def moddedmc(ctx):
         await bot.change_presence(activity=discord.Game(name='modded minecraft'))
         serverstatus = 'running modded minecraft'
     else:
-        await ctx.send('server is busy use "$kill" to kill any instances')
+        await ctx.send('server is busy use "$stop" to kill any instances')
 
 
 # first implementation of linuxGSM, simplifies shit A lot!!!
@@ -203,7 +203,7 @@ async def zomboid(ctx):
         await bot.change_presence(activity=discord.Game(name='project zomboid'))
         serverstatus = 'running zomboid'
     else:
-        await ctx.send('server is busy use "$kill" to kill any instances')
+        await ctx.send('server is busy use "$stop" to kill any instances')
 
 
 @bot.command()
@@ -215,7 +215,7 @@ async def valheim(ctx):
         await bot.change_presence(activity=discord.Game(name='valheim'))
         serverstatus = 'running valheim'
     else:
-        await ctx.send('server is busy use "$kill" to kill any instances')
+        await ctx.send('server is busy use "$stop" to kill any instances')
 
 
 @bot.command()
@@ -227,7 +227,7 @@ async def vintagestory(ctx):
         await bot.change_presence(activity=discord.Game(name='vintage story'))
         serverstatus = 'running vintagestory'
     else:
-        await ctx.send('server is busy use "$kill" to kill any instances')
+        await ctx.send('server is busy use "$stop" to kill any instances')
 
 
 # runs from api key file output, closes api key file
